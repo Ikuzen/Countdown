@@ -1,0 +1,41 @@
+body{
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  background-color: darkorange;
+  grid-template-columns: 70% auto;
+  grid-template-rows: 10% 30% auto;
+  grid-template-areas: 
+  "head head" 
+  "bomb panel-2"
+  "panel-1 panel-2";
+  grid-gap: 1%;
+}
+
+head{
+  grid-area: head;
+  background-color: cyan;
+}
+#bomb{
+  grid-area: bomb;
+  display:grid;
+  grid-template-areas:
+  "wires-left bomb-frame wires-right";
+  background-color: crimson
+}
+.wires-right{
+  grid-area: wires-right;
+}
+.wires-left{
+  grid-area: wires-left;
+}
+
+#panel-1{
+  grid-area: panel-1;
+  background-color: blueviolet
+}
+#panel-2{
+  grid-area: panel-2;
+  background-color: silver;
+}
+
