@@ -14,3 +14,7 @@ const bomb ={
   }
 
 }
+
+function startBomb (){
+  
+}
