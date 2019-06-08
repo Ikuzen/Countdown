@@ -7,6 +7,7 @@ class Timer {
   constructor(timeout_ms) {
     this.remaining = timeout_ms;
     this.isPaused = true;
+    this.isReseted = true;
     console.log('Created timer');
     
   }
@@ -23,6 +24,8 @@ class Timer {
       return
     }
     let time = document.getElementById("timer")
+
+      // converts the given time in ms to /minutes/secondes/centiseconds/  //
       const now2 = new Date(this.remaining);
 
       const minuteString = now2.getMinutes().toString().padStart(2, '0');
@@ -45,7 +48,7 @@ class Timer {
       // in case of reset, time remaining 
       if (this.isReseted) {
         let time = document.getElementById("time-input")
-        this.remaining = time.value
+        this.remaining = time.value*1000
       }
       this.lastTick = Date.now();
       this.isPaused = false;
@@ -82,11 +85,10 @@ class UserI {
     let plus = document.getElementsByClassName("plus")
     let minus = document.getElementsByClassName("minus")
     let timeInput = document.getElementById("time-input")
-    let timer = new Timer(10000)
+    // doesn't matter what argument Timer gets, it will always take the value of the given input
+    let timer = new Timer(100)
 
     start.addEventListener("click", () => {
-      // timer = new Timer(timeInput.value*10)
-
       timer.start()
     })
     stop.addEventListener("click", () => {
