@@ -1,4 +1,4 @@
 setTimeout(()=>{
     let tryAgain = document.getElementsByTagName("a")
-    tryAgain.removeElement("style")
+    tryAgain[0].removeAttribute("style")
 },2000)
