@@ -1,41 +1,88 @@
-body{
+body {
   height: 100vh;
   width: 100vw;
   display: grid;
   background-color: darkorange;
   grid-template-columns: 70% auto;
   grid-template-rows: 10% 30% auto;
-  grid-template-areas: 
-  "head head" 
-  "bomb panel-2"
-  "panel-1 panel-2";
+  grid-template-areas:
+    "head head"
+    "bomb panel-2"
+    "panel-1 panel-2";
   grid-gap: 1%;
 }
 
-head{
+head {
   grid-area: head;
   background-color: cyan;
 }
-#bomb{
+
+#bomb {
   grid-area: bomb;
-  display:grid;
+  display: grid;
   grid-template-areas:
-  "wires-left bomb-frame wires-right";
-  background-color: crimson
+    "wires-left bomb-frame wires-right";
+  background-color: silver;
+  grid-template-columns: 20% auto 20%;
 }
-.wires-right{
+
+#bomb-frame {
+  background-image: url("../Assets/bombwireless.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 0;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 50%;
+  position: relative;
+  /* background-color: crimson; */
+}
+
+#bomb-frame>#timer {
+  position: absolute;
+  top: 39%;
+  left: 31%;
+  width: 33%;
+  font-size: 175%;
+  color: red;
+  text-align: center;
+}
+
+.wires-right {
   grid-area: wires-right;
 }
-.wires-left{
+
+.wires-left {
   grid-area: wires-left;
 }
 
-#panel-1{
+#panel-1 {
   grid-area: panel-1;
   background-color: blueviolet
 }
-#panel-2{
+
+#panel-2 {
   grid-area: panel-2;
   background-color: silver;
 }
 
+@media(max-width:250px){
+  #bomb-frame>#timer{
+    font-size: 75%
+  }
+}
+@media(max-width:500px){
+  #bomb-frame>#timer{
+    font-size: 100%
+  }
+}
+@media(min-width:1000px){
+  #bomb-frame>#timer{
+    font-size: 250%
+  }
+}
+@media(min-width:1500px){
+  #bomb-frame>#timer{
+    font-size: 350%
+  }
+}
