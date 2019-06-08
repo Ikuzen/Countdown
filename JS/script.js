@@ -1,11 +1,7 @@
-// timer class takes a time in ms
-// method .start() -> starts the countdown
-// method .
 
 class Timer {
 
-  constructor(timeout_ms,time,timeInput) {
-    this.remaining = timeout_ms;
+  constructor(time,timeInput) {
     this.timediv = time
     this.timeinput = timeInput
     this.isPaused = true;
@@ -96,7 +92,15 @@ class Wires {
     }
   }
   cutWire(){
-
+    console.log("were in")
+    for (let i=0;i<this.newWireCount;i++){
+      console.log("hey")
+      console.log(this.allWires[i].src)
+      this.allWires[i].addEventListener("click",()=>{
+        this.allWires[i].src = "Assets/redcutwire.png"
+        console.log("cut")
+      })
+    }
   }
   wireSetting(){
     
@@ -114,8 +118,9 @@ class UserI {
     let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
     
-    // doesn't matter what argument Timer gets, it will always take the value of the given time input
-    let timer = new Timer(100,timeDiv,timeInput)
+    // Timer needs the elements of the seconds input, and the timer div.
+    let timer = new Timer(timeDiv,timeInput)
+
     start.addEventListener("click", () => {
       timer.start()
       // the wires input element has to be redefined each time start is pushed
@@ -123,6 +128,7 @@ class UserI {
       let wireCount = document.getElementById("wire-count")
       let wires_ = new Wires(wires,wireCount)
       wires_.update()
+      wires_.cutWire()
       
     })
     stop.addEventListener("click", () => {
