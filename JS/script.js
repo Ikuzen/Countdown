@@ -9,48 +9,63 @@ class Timer {
     this.isPaused = true;
     console.log('Created timer');
   }
+loop() {
+  const now = Date.now();
+  this.remaining -= now - this.lastTick;
+  this.lastTick = now;
 
-  loop() {
-    const now = Date.now();
-    this.remaining -= now - this.lastTick;
-    this.lastTick = now;
-
-    console.log(this.remaining);
-    let time = document.getElementById("timer")
-    time.innerHTML = Math.floor(this.remaining / 10)
-    if (this.remaining <= 0) {
-      console.log('Finished');
-      window.location.href = "../links/explosion.html"
-      return;
-    }
-
-    if (this.isPaused) {
-      return;
-    }
-
-    setTimeout(() => this.loop(), 10);
+  console.log(this.remaining);
+  if (this.isPaused) {
+    return;
+  }
+  if(this.isReseted){
+    return
+  }
+  let time = document.getElementById("timer")
+  time.innerHTML = Math.floor(this.remaining / 10)
+  if (this.remaining <= 0) {
+    console.log('Finished');
+    window.location.href = "links/explosion.html"
+    return;
   }
 
-  start() {
-    if (this.isPaused) {
-      this.isPaused = false;
-      this.lastTick = Date.now();
-      this.loop();
-      console.log('Started');
-    } else {
-      console.log('Already started');
+  // every 10 ms, calls loop
+  setTimeout(() => this.loop(), 10);
+}
+
+start() {
+  if (this.isPaused || this.isReseted) {
+    // in case of reset, time remaining 
+    if(this.isReseted){
+      let time = document.getElementById("time-input")
+      this.remaining = time.value
     }
+    this.lastTick = Date.now();
+    this.isPaused = false;
+    this.isReseted = false;
+    this.loop();
+    console.log('Started');
+  } else {
+    console.log('Already started');
+  }
+}
+
+pause() {
+  if (!this.isPaused) {
+    this.isPaused = true;
+    console.log('Paused');
+  } else {
+    console.log('Already paused');
   }
 
-  pause() {
-    if (!this.isPaused) {
-      this.isPaused = true;
-      console.log('Paused');
-    } else {
-      console.log('Already paused');
-    }
+}
+reset(){
+  this.isReseted = true
+  let time = document.getElementById("timer")
+  let timeInput = document.getElementById("time-input")
+  time.innerHTML = timeInput.value/10
 
-  }
+}
 }
 
 class UserI {
@@ -61,16 +76,20 @@ class UserI {
     let plus = document.getElementsByClassName("plus")
     let minus = document.getElementsByClassName("minus")
     let timeInput = document.getElementById("time-input")
-    start.addEventListener("click", ()=>{
-      let newTime = timeInput.value
-      var timer = new Timer(newTime)
-      timer.start()
+    let timer = new Timer(10000)
+    
+    start.addEventListener("click", () => {
+        // timer = new Timer(timeInput.value*10)
+      
+        timer.start()
     })
-    // stop.addEventListener("click", ()=>{
-    //   timer.pause()
-    // })
-    // reset.addEventListener("click", ()=>{
-
+    stop.addEventListener("click", ()=>{
+      timer.pause()
+    })
+    reset.addEventListener("click", ()=>{
+      timer.reset()
+      console.log("stopped this shit")
+    })
     // })plus.addEventListener("click", ()=>{
 
     // })minus.addEventListener("click", ()=>{
