@@ -4,8 +4,10 @@
 
 class Timer {
 
-  constructor(timeout_ms) {
+  constructor(timeout_ms,time,timeInput) {
     this.remaining = timeout_ms;
+    this.timediv = time
+    this.timeinput = timeInput
     this.isPaused = true;
     this.isReseted = true;
     console.log('Created timer');
@@ -23,7 +25,6 @@ class Timer {
     if (this.isReseted) {
       return
     }
-    let time = document.getElementById("timer")
 
       // converts the given time in ms to /minutes/secondes/centiseconds/  //
       const now2 = new Date(this.remaining);
@@ -32,7 +33,7 @@ class Timer {
       const secondString = now2.getSeconds().toString().padStart(2, '0')
       const centisecString = Math.floor(now2.getMilliseconds() / 10).toString().padStart(2, '0')
 
-    time.innerHTML = `${minuteString}:${secondString}:${centisecString}`
+    this.timediv.innerHTML = `${minuteString}:${secondString}:${centisecString}`
     if (this.remaining <= 0) {
       console.log('Finished');
       window.location.href = "links/explosion.html"
@@ -47,8 +48,7 @@ class Timer {
     if (this.isPaused || this.isReseted) {
       // in case of reset, time remaining 
       if (this.isReseted) {
-        let time = document.getElementById("time-input")
-        this.remaining = time.value*1000
+        this.remaining = this.timeinput.value*1000
       }
       this.lastTick = Date.now();
       this.isPaused = false;
@@ -71,11 +71,38 @@ class Timer {
   }
   reset() {
     this.isReseted = true
-    let time = document.getElementById("timer")
-    time.innerHTML = "00:00:00"
-
+    this.timediv.innerHTML = "00:00:00"
+    
   }
 }
+class Wires {
+  constructor(wire_elements,wire_count){
+    this.allWires = wire_elements
+    this.newWireCount = wire_count.value
+
+  }
+  // update will add/removes wires 
+  update(){
+    // will make as many elements as there are wires visible
+    console.log(this.allWires[3])
+    for(let i=0; i< this.newWireCount;i++){
+      this.allWires[i].removeAttribute("style")
+    }
+    // if number of wires selected inferior to the max, non selected wires becomes invisible
+    if(this.newWireCount > 0){
+      for(let i =0; i< 8-parseInt(this.newWireCount);i++){
+        this.allWires[7-i].style="display:none"
+      }
+    }
+  }
+  cutWire(){
+
+  }
+  wireSetting(){
+    
+  }
+}
+
 
 class UserI {
   button() {
@@ -84,12 +111,19 @@ class UserI {
     let reset = document.getElementById("reset")
     let plus = document.getElementsByClassName("plus")
     let minus = document.getElementsByClassName("minus")
+    let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
-    // doesn't matter what argument Timer gets, it will always take the value of the given input
-    let timer = new Timer(100)
-
+    
+    // doesn't matter what argument Timer gets, it will always take the value of the given time input
+    let timer = new Timer(100,timeDiv,timeInput)
     start.addEventListener("click", () => {
       timer.start()
+      // the wires input element has to be redefined each time start is pushed
+      let wires = document.getElementsByClassName("wires")
+      let wireCount = document.getElementById("wire-count")
+      let wires_ = new Wires(wires,wireCount)
+      wires_.update()
+      
     })
     stop.addEventListener("click", () => {
       timer.pause()
@@ -99,54 +133,16 @@ class UserI {
       console.log("stopped this shit")
     })
     // })plus.addEventListener("click", ()=>{
-
-    // })minus.addEventListener("click", ()=>{
-
-  }
-
-}
-const bomb = {
-  started: false,
-  paused: false,
-  wires: {
-    red: [1, "uncut"],
-    green: [1, "uncut"],
-    blue: [1, "uncut"]
-  },
-
-  time: {
-
-  }
-
+      
+      // })minus.addEventListener("click", ()=>{
+        
+      }
+      
 }
 
-const date = {
 
-}
-// function setTimer(time){
-//   bomb.time=time
-// }
-// function changeTimer(cstime){
-//   let seconds = Math.floor(cstime / 1000) % 60 ;
-//   let minutes = (Math.floor(cstime / (1000*60)) % 60);
-//   let centiseconds = Math.floor(cstime /100)%100
-//   return([minutes,seconds,centiseconds])
-// }
-// function startBomb (){
-//   for (let i =0; i <(bomb.time);i++){
-//     setTimeout(changeTimer(i),i)
-//   }
-// }
+// initialization
 
-// const now = new Date();
-// console.log(`${now.getMinutes()}:${now.getSeconds()}: ${Math.floor(now.getMilliseconds()/10)}`)
-
-
-// setInterval(() => {
-//   const now = new Date();
-
-//   timer.innerHTML = (`${now.getMinutes()}:${now.getSeconds()}: ${Math.floor(now.getMilliseconds()/10)}`)
-// }, 10);
 
 const UI = new UserI
 UI.button()
