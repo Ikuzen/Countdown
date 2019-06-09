@@ -16,20 +16,21 @@
   </head>
 
   <div id="bomb">
-    <div class="wires-right">
-      <img class = wires src="Assets/redwire.png" alt="redwireImage">
-      <img class = wires src="Assets/redwire.png" alt="redwireImage">
-      <img class = wires src="Assets/redwire.png" alt="redwireImage">
-      <img class = wires src="Assets/redwire.png" alt="redwireImage">
-    </div>
-    <div id = "bomb-frame">
-      <div id ="timer"> 00:00:00 </div>
-    </div>
     <div class="wires-left">
       <img class = wires src="Assets/redwire.png" alt="redwireImage">
       <img class = wires src="Assets/redwire.png" alt="redwireImage">
       <img class = wires src="Assets/redwire.png" alt="redwireImage">
-      <img class = wires src="Assets/redwire.png" alt="redwireImage">
+      <img class = wires src="Assets/redwire.png" alt="redwireImage"
+      style="display:none">
+    </div>
+    <div id = "bomb-frame">
+      <div id ="timer"> 00:00:00 </div>
+    </div>
+    <div class="wires-right">
+      <img class = wires src="Assets/redwire.png" alt="redwireImage"style="display:none">
+      <img class = wires src="Assets/redwire.png" alt="redwireImage"style="display:none">
+      <img class = wires src="Assets/redwire.png" alt="redwireImage"style="display:none">
+      <img class = wires src="Assets/redwire.png" alt="redwireImage"style="display:none">
 
     </div>
 
@@ -39,7 +40,7 @@
     <div id="set-timer">
       <button type="button" class="plus"> </button>
       <button type="button" class="minus"> </button>
-      <input type="number" id="time-input" value="100">
+      <input type="number" id="time-input" value="30">
       <label for="seconds">S</label>
       <img src="Assets/start-button-from-ms-clip-art.png" id="start" alt="start button image">
       <img src="Assets/stop-button-md.png" id="stop" alt =" stop button image">
@@ -48,7 +49,7 @@
 
   <div id="panel-2">
     <label for="select_wires"> Add wires</label>
-    <input type="number" value="3" id="wire-count" min="0" max="8">
+    <input type="number" value="3" id="wire-count" min="2" max="8">
     <button type="button" class="plus"> </button>
     <button type="button" class="minus"> </button>
 

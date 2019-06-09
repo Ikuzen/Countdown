@@ -11,3 +11,17 @@ img{
   position: absolute;
   z-index: -1;
 }
+a{
+  display: flex;
+  justify-items: flex-end;
+  font-size: 50px;
+  position: absolute;
+  top: 79%;
+  left: 30%;
+  transition: 0.5ms;
+}
+#content{
+  font-size: 20px;
+    position: absolute;
+    display: flex;
+}
