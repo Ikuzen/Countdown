@@ -114,10 +114,18 @@ class Wires {
         }
 
       })
+      // events that highlight on hover the wires
+      this.allWires[i].addEventListener("mouseover", () => {
+        this.allWires[i].style = "border:ridge gold 3px"
+      })
+      this.allWires[i].addEventListener("mouseout", () => {
+        this.allWires[i].removeAttribute("style")
+
+      })
     }
   }
   wireSetting() {
-
+    
   }
 }
 
@@ -132,10 +140,26 @@ class UserI {
     let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
 
+    // buttons highligthers
+    start.addEventListener("mouseover", () => {
+      start.style = "width:60%;height:60%"
+    })
+    start.addEventListener("mouseout", () => {
+      start.removeAttribute("style")
+    })
+    stop.addEventListener("mouseover", () => {
+      stop.style = "width:60%;height:60%"
+    })
+    stop.addEventListener("mouseout", () => {
+      stop.removeAttribute("style")
+    })
+
+
     // Timer needs the elements of the seconds input, and the timer div.
     let timer = new Timer(timeDiv, timeInput)
 
     start.addEventListener("click", () => {
+
       // case if click on start for the first time > initialize wires
       if (timer.isReseted) {
         let wires = document.getElementsByClassName("wires")

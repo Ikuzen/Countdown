@@ -9,7 +9,7 @@ body {
     "head head"
     "bomb panel-2"
     "panel-1 panel-2";
-  grid-gap: 0%;
+  grid-gap: 1%;
 }
 h1{
   color: red
@@ -22,12 +22,28 @@ h1{
 #panel-1{
   background-image: url("../Assets/metallic.jpg");
   background-size: contain;
-  border-radius: 10%
+  border-radius: 10%;
   /* background-repeat: no-repeat; */
+  display: grid;
+  grid-template-areas: 
+  "timeinput start stop"
+  "timeinput . .";
+  grid-template-rows: 50% 50%;
+  grid-template-columns:40% 30% 30%;
+
 }
-#panel-1>#set-timer>img {
-  height:20%;
-  width: 20%;
+#timer-input{
+  grid-area: timeinput;
+}
+#start{
+  grid-area: start;
+}
+#stop{
+  grid-area: stop;
+}
+#panel-1>img {
+  height:50%;
+  width: 50%;
 }
 #bomb>.wires-right>img{
   height: 10%;
