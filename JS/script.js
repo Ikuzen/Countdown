@@ -92,24 +92,24 @@ class Wires {
     }
   }
   cutWire() {
-    console.log("were in")
     for (let i = 0; i < this.newWireCount; i++) {
-      console.log("hey")
-      console.log(this.allWires[i].src)
+      // will change the image of the wire when cut
       this.allWires[i].addEventListener("click", () => {
         //if red wire
-        if(i== 0||i==3||i==4||i==7){
-        this.allWires[i].src = "Assets/redcutwire.png"
-        console.log("cut")
+        if (i == 0 || i == 3 || i == 4 || i == 7) {
+          this.allWires[i].src = "Assets/redcutwire.png"
+          console.log("cut")
         }
         //if green wire
-        else if(i==1||i==5){
+        else if (i == 1 || i == 5) {
           this.allWires[i].src = "Assets/greencutwire.png"
+          console.log("cut")
 
         }
         //if blue wire
-        else if(i==2 || i==6){
+        else if (i == 2 || i == 6) {
           this.allWires[i].src = "Assets/bluecutwire.png"
+          console.log("cut")
 
         }
 
@@ -136,10 +136,8 @@ class UserI {
     let timer = new Timer(timeDiv, timeInput)
 
     start.addEventListener("click", () => {
-      // the wires input element has to be redefined each time start is pushed
-      console.log(timer.isReseted)
-      if(timer.isReseted)
-      {
+      // the wires input element has to be redefined each time start is pushed if the game has resetted
+      if (timer.isReseted) {
         let wires = document.getElementsByClassName("wires")
         let wireCount = document.getElementById("wire-count")
         let wires_ = new Wires(wires, wireCount)
@@ -155,6 +153,26 @@ class UserI {
     reset.addEventListener("click", () => {
       timer.reset()
       console.log("stopped this shit")
+      let wires = document.getElementsByClassName("wires")
+        // resets all wires image
+        for (let i = 0; i < wires.length; i++) {
+          // if red wires
+          if (i == 0 || i == 3 || i == 4 || i == 7) {
+            wires[i].src = "Assets/redwire.png"
+          }
+          //if green wire
+          else if (i == 1 || i == 5) {
+            wires[i].src = "Assets/greenwire.png"
+            console.log("cut")
+
+          }
+          //if blue wire
+          else if (i == 2 || i == 6) {
+            wires[i].src = "Assets/bluewire.png"
+            console.log("cut")
+
+          }
+        }
     })
     // })plus.addEventListener("click", ()=>{
 
