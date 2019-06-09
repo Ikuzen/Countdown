@@ -136,7 +136,7 @@ class UserI {
     let timer = new Timer(timeDiv, timeInput)
 
     start.addEventListener("click", () => {
-      // the wires input element has to be redefined each time start is pushed if the game has resetted
+      // case if click on start for the first time > initialize wires
       if (timer.isReseted) {
         let wires = document.getElementsByClassName("wires")
         let wireCount = document.getElementById("wire-count")
@@ -154,25 +154,27 @@ class UserI {
       timer.reset()
       console.log("stopped this shit")
       let wires = document.getElementsByClassName("wires")
-        // resets all wires image
-        for (let i = 0; i < wires.length; i++) {
-          // if red wires
-          if (i == 0 || i == 3 || i == 4 || i == 7) {
-            wires[i].src = "Assets/redwire.png"
-          }
-          //if green wire
-          else if (i == 1 || i == 5) {
-            wires[i].src = "Assets/greenwire.png"
-            console.log("cut")
-
-          }
-          //if blue wire
-          else if (i == 2 || i == 6) {
-            wires[i].src = "Assets/bluewire.png"
-            console.log("cut")
-
-          }
+      let wireCount = document.getElementById("wire-count")
+      let wires_ = new Wires(wires, wireCount)
+      wires_.update()
+      wires_.cutWire()
+      // resets all wires image
+      for (let i = 0; i < wires.length; i++) {
+        // if red wires
+        if (i == 0 || i == 3 || i == 4 || i == 7) {
+          wires[i].src = "Assets/redwire.png"
         }
+        //if green wire
+        else if (i == 1 || i == 5) {
+          wires[i].src = "Assets/greenwire.png"
+
+        }
+        //if blue wire
+        else if (i == 2 || i == 6) {
+          wires[i].src = "Assets/bluewire.png"
+
+        }
+      }
     })
     // })plus.addEventListener("click", ()=>{
 
