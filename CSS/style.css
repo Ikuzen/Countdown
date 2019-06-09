@@ -27,7 +27,6 @@ body {
   width: 108%;
   position: relative;
   right: -12%;
-  z-index: -2;
 }
 head {
   grid-area: head;
@@ -41,7 +40,6 @@ head {
     "wires-left bomb-frame wires-right";
   background-color: silver;
   grid-template-columns: 20% auto 20%;
-  z-index: -100;
 }
 
 #bomb-frame {

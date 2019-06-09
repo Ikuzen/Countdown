@@ -97,8 +97,22 @@ class Wires {
       console.log("hey")
       console.log(this.allWires[i].src)
       this.allWires[i].addEventListener("click", () => {
+        //if red wire
+        if(i== 0||i==3||i==4||i==7){
         this.allWires[i].src = "Assets/redcutwire.png"
         console.log("cut")
+        }
+        //if green wire
+        else if(i==1||i==5){
+          this.allWires[i].src = "Assets/greencutwire.png"
+
+        }
+        //if blue wire
+        else if(i==2 || i==6){
+          this.allWires[i].src = "Assets/bluecutwire.png"
+
+        }
+
       })
     }
   }
