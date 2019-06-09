@@ -151,8 +151,11 @@ class Wires {
         //checks if it's the explosive wire, if true sends immediately to game over page
         if(this.wireStates[i].explosive === true){
           window.location.href = "links/explosion.html"
-
         }
+        //also checks if the good wire was cut
+        if(this.wireStates[i].defusing ===true){
+          window.location.href ="links/defused.html"
+        } 
 
       })
       // events that highlight on hover the wires
@@ -165,14 +168,23 @@ class Wires {
       })
     }
   }
+
   // sets the exploding/difusing wires, randomly depending of number of wires
   wireSetting() {
     // selects randomly one of the active wires (from 0 to the number of wires), and sets its property to "explosive"
     let explodingWireIndex = Math.floor(Math.random()*parseInt(this.newWireCount))
-    console.log(explodingWireIndex)
-    console.log(this.wireStates)
+
     this.wireStates[explodingWireIndex].explosive = true
 
+    let winningWireIndex = Math.floor(Math.random()*parseInt(this.newWireCount))
+    // in case random chooses the same index for both winning and losing > adds +/- to the index
+    if(winningWireIndex == explodingWireIndex && winningWireIndex< this.newWireCount-1){
+      winningWireIndex++
+    }
+    else if(winningWireIndex == explodingWireIndex && winningWireIndex> this.newWireCount-1){
+      winningWireIndex--
+    }
+    this.wireStates[winningWireIndex].defusing = true
   }
 }
 
