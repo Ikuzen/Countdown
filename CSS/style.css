@@ -11,52 +11,73 @@ body {
     "panel-1 panel-2";
   grid-gap: 1%;
 }
-h1{
+
+h1 {
   color: red
 }
-#bomb{
+
+#bomb {
   background-image: url("../Assets/metallic.jpg");
   background-size: contain;
   border-radius: 10%
 }
-#panel-1{
+
+#panel-1 {
   background-image: url("../Assets/metallic.jpg");
   background-size: contain;
   border-radius: 10%;
-  /* background-repeat: no-repeat; */
   display: grid;
-  grid-template-areas: 
-  "timeinput start stop"
-  "timeinput . .";
+  grid-template-areas:
+    "timeinput start stop"
+    "timeinput . .";
   grid-template-rows: 50% 50%;
-  grid-template-columns:40% 30% 30%;
+  grid-template-columns: 40% 30% 30%;
 
 }
-#timer-input{
+
+#timer-input {
   grid-area: timeinput;
 }
-#start{
+#input-frame{
+  position: relative;
+  left: 18%;
+  top: 19%;
+  display: flex;
+  height: 50%;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+  background-color: bisque;
+  border-radius: 5%;
+  border: solid 2px silver;
+}
+#start {
   grid-area: start;
 }
-#stop{
+
+#stop {
   grid-area: stop;
 }
+
 #panel-1>img {
-  height:50%;
+  height: 50%;
   width: 50%;
 }
-#bomb>.wires-right>img{
+
+#bomb>.wires-right>img {
   height: 10%;
   width: 108%;
   position: relative;
   left: -12%;
 }
-#bomb>.wires-left>img{
+
+#bomb>.wires-left>img {
   height: 10%;
   width: 108%;
   position: relative;
   right: -12%;
 }
+
 head {
   grid-area: head;
   background-color: cyan;
@@ -110,26 +131,28 @@ head {
   grid-area: panel-2;
   background-color: silver;
 }
-#time-input{
-  width: 10%;
-}
-@media(max-width:250px){
-  #bomb-frame>#timer{
+
+
+@media(max-width:250px) {
+  #bomb-frame>#timer {
     font-size: 75%
   }
 }
-@media(max-width:500px){
-  #bomb-frame>#timer{
+
+@media(max-width:500px) {
+  #bomb-frame>#timer {
     font-size: 100%
   }
 }
-@media(min-width:1000px){
-  #bomb-frame>#timer{
+
+@media(min-width:1000px) {
+  #bomb-frame>#timer {
     font-size: 250%
   }
 }
-@media(min-width:1500px){
-  #bomb-frame>#timer{
+
+@media(min-width:1500px) {
+  #bomb-frame>#timer {
     font-size: 350%
   }
 }

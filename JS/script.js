@@ -75,8 +75,44 @@ class Wires {
   constructor(wire_elements, wire_count) {
     this.allWires = wire_elements
     this.newWireCount = wire_count.value
+    // array object that initializes the infos on each wire
+    this.wireStates=[
+      {
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },{
+        cut:false,
+        defusing:false,
+        explosive:false,
+      },]
+    }
 
-  }
+  
   // update will add/removes wires 
   update() {
     // will make as many elements as there are wires visible
@@ -112,6 +148,11 @@ class Wires {
           console.log("cut")
 
         }
+        //checks if it's the explosive wire, if true sends immediately to game over page
+        if(this.wireStates[i].explosive === true){
+          window.location.href = "links/explosion.html"
+
+        }
 
       })
       // events that highlight on hover the wires
@@ -124,8 +165,14 @@ class Wires {
       })
     }
   }
+  // sets the exploding/difusing wires, randomly depending of number of wires
   wireSetting() {
-    
+    // selects randomly one of the active wires (from 0 to the number of wires), and sets its property to "explosive"
+    let explodingWireIndex = Math.floor(Math.random()*parseInt(this.newWireCount))
+    console.log(explodingWireIndex)
+    console.log(this.wireStates)
+    this.wireStates[explodingWireIndex].explosive = true
+
   }
 }
 
@@ -167,6 +214,7 @@ class UserI {
         let wires_ = new Wires(wires, wireCount)
         wires_.update()
         wires_.cutWire()
+        wires_.wireSetting()
       }
       timer.start()
 

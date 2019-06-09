@@ -38,10 +38,13 @@
 
   <div id="panel-1">
       <div id="timer-input">
-        <button type="button" class="plus"> </button>
-        <button type="button" class="minus"> </button>
-        <input type="number" id="time-input" value="30">
-        <label for="seconds">S</label>
+        <div id="input-frame">
+          <button type="button" class="plus"> </button>
+          <button type="button" class="minus"> </button>
+          <input type="number" id="time-input" value="30" max="180" min="0">
+          <label for="seconds">S</label>
+
+        </div>
       </div>
       <img src="Assets/start-button-from-ms-clip-art.png" id="start" alt="start button image">
       <img src="Assets/stop-button-md.png" id="stop" alt =" stop button image">
