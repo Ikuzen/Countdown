@@ -56,19 +56,22 @@ h1 {
   grid-area: start;
 }
 #start:hover{
-  width:60%;height:60%
-}
+  border: double aquamarine 1px;
+  transition-duration: 0.2s;}
 
 #stop {
   grid-area: stop;
 }
 #stop:hover{
-  width:60%;height:60%
+  border: double aquamarine 1px;
+  transition-duration: 0.2s;
 }
 
 #panel-1>img {
-  height: 50%;
-  width: 50%;
+  height: auto;
+  width: auto;
+  max-height: 500px;
+  max-width: 500px;
 }
 
 #bomb>.wires-right>img {
