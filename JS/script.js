@@ -14,6 +14,7 @@ class Timer {
     this.isPaused = true;
     this.isReseted = true;
     this.tickAudio = document.getElementById("tic")
+    this.tickDate = 0
     console.log('Created timer');
 
   }
@@ -38,13 +39,17 @@ class Timer {
     const centisecString = Math.floor(now2.getMilliseconds() / 10).toString().padStart(2, '0')
 
     this.timediv.innerHTML = `${minuteString}:${secondString}:${centisecString}`
-    
+
     // makes a tick sounds when a second ends
-    if (centisecString == 0){
+    if (this.tickDate !== secondString) {
       this.tickAudio.play()
-      setTimeout(()=>{this.tickAudio.pause()
-      this.tickAudio.currentTime=0},100)
+      setTimeout(() => {
+        this.tickAudio.pause()
+        this.tickAudio.currentTime = 0
+      }, 100)
     }
+    this.tickDate = secondString;
+  
     if (this.remaining <= 0) {
       console.log('Finished');
       window.location.href = "links/explosion.html"
@@ -157,7 +162,11 @@ class Wires {
     for (let i = 0; i < this.newWireCount; i++) {
       // will change the image of the wire when cut
       this.allWires[i].addEventListener("click", () => {
-        this.cutAudio.play()
+        // plays the cut sound effect if not cut already
+        if (this.wireStates[i].cut == false) {
+          this.cutAudio.play()
+        }
+        this.wireStates[i].cut = true
         //if red wire
         if (i == 0 || i == 3 || i == 4 || i == 7) {
           this.allWires[i].src = "Assets/redcutwire.png"
