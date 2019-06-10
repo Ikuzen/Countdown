@@ -3,7 +3,8 @@ body {
   width: 100vw;
   display: grid;
   background-color: black;
-  grid-template-columns: 70% auto;
+  text-align: center;
+  grid-template-columns: 80% auto;
   grid-template-rows: 10% 50% auto;
   grid-template-areas:
     "head head"

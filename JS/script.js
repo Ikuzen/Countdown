@@ -46,7 +46,7 @@ class Timer {
       setTimeout(() => {
         this.tickAudio.pause()
         this.tickAudio.currentTime = 0
-      }, 100)
+      }, 300)
     }
     this.tickDate = secondString;
   
