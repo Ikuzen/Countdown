@@ -12,7 +12,41 @@ body {
     "panel-1 panel-2";
   grid-gap: 1%;
 }
+/* the svg container */
+.svg2
+{
+  width: 500px;
+  height: 750px;
+  fill: aliceblue;
+}
+svg text
+{
+  border: 1px solid black;
+  fill: black;
+}
+#input-container{
+  stroke: silver;
+  fill: purple;
+  stroke-opacity: 0.7;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+#plus5{
+  fill:greenyellow
+}
+#plus10{
+  fill:greenyellow
+}
+#minus5{
+  fill: crimson;
+}
+#minus10{
+  fill:crimson;
+}
+#plus5,#plus10,#minus5,#minus10{
 
+z-index:-1000
+}
 h1 {
   color: red
 }
@@ -29,10 +63,8 @@ h1 {
   border-radius: 10%;
   display: grid;
   grid-template-areas:
-    "timeinput start stop"
-    "timeinput . .";
-  grid-template-rows: 50% 50%;
-  grid-template-columns: 40% 30% 30%;
+    "timeinput start stop";
+  grid-template-columns: 50% auto auto;
 
 }
 
@@ -51,6 +83,7 @@ h1 {
   background-color: bisque;
   border-radius: 5%;
   border: solid 2px silver;
+  stroke:black;
 }
 #start {
   grid-area: start;
@@ -171,23 +204,23 @@ head {
   text-align: center;
 }
 
-#panel-2>.plus{
+#panel-2>#plus{
   grid-area: wire-plus;
   background-color: green;
   opacity: 0.7;
   
 }
-#panel-2>.plus:hover{
+#panel-2>#plus:hover{
   border-radius: 20%;
   transition-duration: 0.5s;
 }
 
-#panel-2>.minus{
+#panel-2>#minus{
   grid-area:wire-minus;
   background-color: red;
   opacity: 0.7;
 }
-#panel-2>.minus:hover{
+#panel-2>#minus:hover{
   border-radius: 20%;
   transition-duration: 0.5s;
 }
@@ -201,7 +234,7 @@ head {
   background-color: aquamarine;
   transition-duration: 0.2s;
 }
-#panel-2>.plus,#panel-2>.minus{
+#panel-2>#plus,#panel-2>#minus{
   font-size: 200%;
   color: azure;
   background-image: url("../Assets/rgbWires.png");

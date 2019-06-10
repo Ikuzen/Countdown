@@ -16,6 +16,7 @@ class Timer {
     this.tickAudio = document.getElementById("tic")
     this.tickDate = 0
     console.log('Created timer');
+    console.log(this.timeinput)
 
   }
   loop() {
@@ -62,9 +63,10 @@ class Timer {
 
   start() {
     if (this.isPaused || this.isReseted) {
-      // in case of reset, time remaining 
+      // in case of reset, get the time from the input
       if (this.isReseted) {
-        this.remaining = this.timeinput.value * 1000
+        console.log(this.timeinput)
+        this.remaining = parseInt(this.timeinput.innerHTML) * 1000
       }
       this.lastTick = Date.now();
       this.isPaused = false;
@@ -226,8 +228,13 @@ class UserI {
     let start = document.getElementById("start")
     let stop = document.getElementById("stop")
     let reset = document.getElementById("reset")
-    let plus = document.getElementsByClassName("plus")
-    let minus = document.getElementsByClassName("minus")
+    let plus = document.getElementById("plus")
+    let minus = document.getElementById("minus")
+    let plus5 = document.getElementById("plus5")
+    let plus10 = document.getElementById("plus10")
+    let minus5 = document.getElementById("minus5")
+    let minus10 = document.getElementById("minus10")
+    console.log(plus5)
     let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
     let wireCount = document.getElementById("wire-count")
@@ -277,24 +284,36 @@ class UserI {
         }
       }
     })
-    plus[0].addEventListener("click", () => {
-      if (timeInput.value < 180) {
-        timeInput.value++
+
+    // add events to plus and minus buttons
+    plus5.addEventListener("click", () => {
+      if (parseInt(timeInput.innerHTML) < 180) {
+        timeInput.innerHTML= parseInt(timeInput.innerHTML)+parseInt(5)
+      }
+    })
+    plus10.addEventListener("click", () => {
+      if (parseInt(timeInput.innerHTML) < 175) {
+        timeInput.innerHTML= parseInt(timeInput.innerHTML)+parseInt(10)
       }
     })
 
-    minus[0].addEventListener("click", () => {
-      if (timeInput.value > 0) {
-        timeInput.value--
+    minus5.addEventListener("click", () => {
+      if (parseInt(timeInput.innerHTML) > 0) {
+        timeInput.innerHTML= parseInt(timeInput.innerHTML)-parseInt(5)
+      }
+    })
+    minus10.addEventListener("click", () => {
+      if (parseInt(timeInput.innerHTML) >5) {
+        timeInput.innerHTML= parseInt(timeInput.innerHTML)-parseInt(10)
       }
     })
 
-    plus[1].addEventListener("click", () => {
+    plus.addEventListener("click", () => {
       if (wireCount.value < 8) {
         wireCount.value++
       }
     })
-    minus[1].addEventListener("click", () => {
+    minus.addEventListener("click", () => {
       if (wireCount.value > 2) {
         wireCount.value--
       }
