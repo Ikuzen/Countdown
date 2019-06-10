@@ -54,9 +54,15 @@ h1 {
 #start {
   grid-area: start;
 }
+#start:hover{
+  width:60%;height:60%
+}
 
 #stop {
   grid-area: stop;
+}
+#stop:hover{
+  width:60%;height:60%
 }
 
 #panel-1>img {
@@ -76,6 +82,9 @@ h1 {
   width: 108%;
   position: relative;
   right: -12%;
+}
+img.wires:hover{
+  box-shadow: 0 0 10px gold, 0 0 20px aqua;
 }
 
 head {
@@ -130,8 +139,71 @@ head {
 #panel-2 {
   grid-area: panel-2;
   background-color: silver;
+  background-image: url("../Assets/wirecutter.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 5%;
+  display: grid;
+  grid-template-areas: "wire-label""wire-input""wire-plus""wire-minus""reset";
+  grid-template-rows: 15% 15% 15% 15% auto;
+  text-align: center;
+  font-size: 400%;
+
+}
+#panel-2>label{
+  grid-area: wire-label;
+  color:crimson; 
+  background-color: black;
+  opacity: 0.5;
+
+}
+#panel-2>input
+{
+  grid-area: wire-input;
+  background: transparent;
+  border: none;
+  color: blue;
+  font-size: 200%;
+  text-align: center;
 }
 
+#panel-2>.plus{
+  grid-area: wire-plus;
+  background-color: green;
+  opacity: 0.7;
+  
+}
+#panel-2>.plus:hover{
+  border-radius: 20%;
+  transition-duration: 0.5s;
+}
+
+#panel-2>.minus{
+  grid-area:wire-minus;
+  background-color: red;
+  opacity: 0.7;
+}
+#panel-2>.minus:hover{
+  border-radius: 20%;
+  transition-duration: 0.5s;
+}
+
+#panel-2>#reset{
+  background-image: url("../Assets/reset.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+#panel-2>#reset:hover{
+  background-color: aquamarine;
+  transition-duration: 0.2s;
+}
+#panel-2>.plus,#panel-2>.minus{
+  font-size: 200%;
+  color: azure;
+  background-image: url("../Assets/rgbWires.png");
+  background-size: contain;
+  background-repeat: no-repeat
+}
 
 @media(max-width:250px) {
   #bomb-frame>#timer {

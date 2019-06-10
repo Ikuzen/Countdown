@@ -39,8 +39,8 @@
   <div id="panel-1">
       <div id="timer-input">
         <div id="input-frame">
-          <button type="button" class="plus"> </button>
-          <button type="button" class="minus"> </button>
+          <button type="button" class="plus">+</button>
+          <button type="button" class="minus">-</button>
           <input type="number" id="time-input" value="30" max="180" min="0">
           <label for="seconds">S</label>
 
@@ -51,13 +51,16 @@
   </div>
 
   <div id="panel-2">
-    <label for="select_wires"> Add wires</label>
+    <label for="select_wires" id="select-wires"> Add wires</label>
     <input type="number" value="3" id="wire-count" min="2" max="8">
-    <button type="button" class="plus"> </button>
-    <button type="button" class="minus"> </button>
+    <button type="button" class="plus"> +1</button>
+    <button type="button" class="minus"> -1 </button>
 
-    <button type="button" id="reset">RESET</button>
+    <div type="button" id="reset"></div>
   </div>
+
+  <audio id="cut" src="Assets/SNIP.WAV"></audio>
+  <audio id="tic" src="Assets/bip.mp3"></audio>
 </body>
 <script src="JS/script.js"></script>
 </html>

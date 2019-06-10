@@ -1,4 +1,11 @@
-
+///////////
+/// The timer class will take the elements of the time input (from the user), and from the time div (which displays the time remaining on the bomb)
+/// it has :
+/// **loop method ** which calls itself and updates the time remaining until it reaches zero, or is paused/reseted
+/// **start method ** will call the loop method for the first time, and will initialize the conditions if game was reseted
+/// ** pause method ** will set isPaused to true, stopping the loop method and freezing the timer
+/// **reset method** will set isReseted to true, stopping the loop, and making start method initialize .
+//////////
 class Timer {
 
   constructor(time, timeInput) {
@@ -6,6 +13,7 @@ class Timer {
     this.timeinput = timeInput
     this.isPaused = true;
     this.isReseted = true;
+    this.tickAudio = document.getElementById("tic")
     console.log('Created timer');
 
   }
@@ -30,6 +38,13 @@ class Timer {
     const centisecString = Math.floor(now2.getMilliseconds() / 10).toString().padStart(2, '0')
 
     this.timediv.innerHTML = `${minuteString}:${secondString}:${centisecString}`
+    
+    // makes a tick sounds when a second ends
+    if (centisecString == 0){
+      this.tickAudio.play()
+      setTimeout(()=>{this.tickAudio.pause()
+      this.tickAudio.currentTime=0},100)
+    }
     if (this.remaining <= 0) {
       console.log('Finished');
       window.location.href = "links/explosion.html"
@@ -71,48 +86,59 @@ class Timer {
 
   }
 }
+
+
+//////////
+/// The class wires will take the elements from the wires input, and from the wires image elements to modify them
+/// It'll inject the winning and losing conditions of the game.
+///**update method ** displays or hides the wires div, depending of user input
+///**cutWire method ** changes the image of the wires that are cut. Determines if the player wins or loses if the good/bad wires are cut
+///**wireSetting ** randomly injects true to one of the wires win/losing contition
+/////////
 class Wires {
   constructor(wire_elements, wire_count) {
     this.allWires = wire_elements
     this.newWireCount = wire_count.value
-    // array object that initializes the infos on each wire
-    this.wireStates=[
-      {
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },{
-        cut:false,
-        defusing:false,
-        explosive:false,
-      },]
-    }
+    this.cutAudio = document.getElementById("cut")
 
-  
+    // array object that initializes the infos on each wire
+    this.wireStates = [
+      {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      }, {
+        cut: false,
+        defusing: false,
+        explosive: false,
+      },]
+  }
+
+
   // update will add/removes wires 
   update() {
     // will make as many elements as there are wires visible
@@ -131,6 +157,7 @@ class Wires {
     for (let i = 0; i < this.newWireCount; i++) {
       // will change the image of the wire when cut
       this.allWires[i].addEventListener("click", () => {
+        this.cutAudio.play()
         //if red wire
         if (i == 0 || i == 3 || i == 4 || i == 7) {
           this.allWires[i].src = "Assets/redcutwire.png"
@@ -149,46 +176,42 @@ class Wires {
 
         }
         //checks if it's the explosive wire, if true sends immediately to game over page
-        if(this.wireStates[i].explosive === true){
+        if (this.wireStates[i].explosive === true) {
           window.location.href = "links/explosion.html"
         }
         //also checks if the good wire was cut
-        if(this.wireStates[i].defusing ===true){
-          window.location.href ="links/defused.html"
-        } 
+        if (this.wireStates[i].defusing === true) {
+          window.location.href = "links/defused.html"
+        }
 
       })
-      // events that highlight on hover the wires
-      this.allWires[i].addEventListener("mouseover", () => {
-        this.allWires[i].style = "border:ridge gold 3px"
-      })
-      this.allWires[i].addEventListener("mouseout", () => {
-        this.allWires[i].removeAttribute("style")
 
-      })
     }
   }
 
   // sets the exploding/difusing wires, randomly depending of number of wires
   wireSetting() {
     // selects randomly one of the active wires (from 0 to the number of wires), and sets its property to "explosive"
-    let explodingWireIndex = Math.floor(Math.random()*parseInt(this.newWireCount))
+    let explodingWireIndex = Math.floor(Math.random() * parseInt(this.newWireCount))
 
     this.wireStates[explodingWireIndex].explosive = true
 
-    let winningWireIndex = Math.floor(Math.random()*parseInt(this.newWireCount))
+    let winningWireIndex = Math.floor(Math.random() * parseInt(this.newWireCount))
     // in case random chooses the same index for both winning and losing > adds +/- to the index
-    if(winningWireIndex == explodingWireIndex && winningWireIndex< this.newWireCount-1){
+    if (winningWireIndex == explodingWireIndex && winningWireIndex < this.newWireCount - 1) {
       winningWireIndex++
     }
-    else if(winningWireIndex == explodingWireIndex && winningWireIndex> this.newWireCount-1){
+    else if (winningWireIndex == explodingWireIndex && winningWireIndex > this.newWireCount - 1) {
       winningWireIndex--
     }
     this.wireStates[winningWireIndex].defusing = true
   }
 }
 
-
+////////
+// Class User I -> injects all the events on the buttons in the interface.
+// Uses both the class Timer and class Wires as active parameters
+///////
 class UserI {
   button() {
     let start = document.getElementById("start")
@@ -198,21 +221,7 @@ class UserI {
     let minus = document.getElementsByClassName("minus")
     let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
-
-    // buttons highligthers
-    start.addEventListener("mouseover", () => {
-      start.style = "width:60%;height:60%"
-    })
-    start.addEventListener("mouseout", () => {
-      start.removeAttribute("style")
-    })
-    stop.addEventListener("mouseover", () => {
-      stop.style = "width:60%;height:60%"
-    })
-    stop.addEventListener("mouseout", () => {
-      stop.removeAttribute("style")
-    })
-
+    let wireCount = document.getElementById("wire-count")
 
     // Timer needs the elements of the seconds input, and the timer div.
     let timer = new Timer(timeDiv, timeInput)
@@ -222,7 +231,6 @@ class UserI {
       // case if click on start for the first time > initialize wires
       if (timer.isReseted) {
         let wires = document.getElementsByClassName("wires")
-        let wireCount = document.getElementById("wire-count")
         let wires_ = new Wires(wires, wireCount)
         wires_.update()
         wires_.cutWire()
@@ -260,10 +268,28 @@ class UserI {
         }
       }
     })
-    // })plus.addEventListener("click", ()=>{
+    plus[0].addEventListener("click", () => {
+      if (timeInput.value < 180) {
+        timeInput.value++
+      }
+    })
 
-    // })minus.addEventListener("click", ()=>{
+    minus[0].addEventListener("click", () => {
+      if (timeInput.value > 0) {
+        timeInput.value--
+      }
+    })
 
+    plus[1].addEventListener("click", () => {
+      if (wireCount.value < 8) {
+        wireCount.value++
+      }
+    })
+    minus[1].addEventListener("click", () => {
+      if (wireCount.value > 2) {
+        wireCount.value--
+      }
+    })
   }
 
 }
