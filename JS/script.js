@@ -7,7 +7,7 @@
 /// **reset method** sets isReseted to true, stopping the loop, and making start method initialize .
 //////////
 class Timer {
-
+  //time & timeInput are elements
   constructor(time, timeInput) {
     this.timediv = time
     this.timeinput = timeInput
@@ -21,11 +21,10 @@ class Timer {
 
   }
   loop() {
-    const now = Date.now();
+    let now = Date.now();
     this.remaining -= now - this.lastTick;
     this.lastTick = now;
 
-    // console.log(this.remaining);
     if (this.isPaused) {
       return;
     }
@@ -33,12 +32,12 @@ class Timer {
       return
     }
 
-    // converts the given time in ms to /minutes/secondes/centiseconds/  //
-    const now2 = new Date(this.remaining);
+    // converts the given time in ms to /minutes/secondes/centiseconds/ and injects it to the div  //
+    now = new Date(this.remaining);
 
-    const minuteString = now2.getMinutes().toString().padStart(2, '0');
-    const secondString = now2.getSeconds().toString().padStart(2, '0')
-    const centisecString = Math.floor(now2.getMilliseconds() / 10).toString().padStart(2, '0')
+    const minuteString = now.getMinutes().toString().padStart(2, '0');
+    const secondString = now.getSeconds().toString().padStart(2, '0')
+    const centisecString = Math.floor(now.getMilliseconds() / 10).toString().padStart(2, '0')
 
     this.timediv.innerHTML = `${minuteString}:${secondString}:${centisecString}`
 
@@ -55,8 +54,9 @@ class Timer {
     if (this.remaining <= 1890) {
       this.tickWTF.play()
       setTimeout(() => {
-        this.tickAudio.pause()
-        this.tickAudio.currentTime = 0
+        this.tickWTF.pause()
+        this.tickWTF.currentTime = 0
+        console.log("stop")
       }, 1890)  
     }
     // when time reaches zero : gameover
@@ -66,7 +66,7 @@ class Timer {
       return;
     }
 
-    // every 10 ms, calls loop
+    // every 10 ms, calls itself (recursion)
     setTimeout(() => this.loop(), 10);
   }
 
@@ -94,12 +94,11 @@ class Timer {
     } else {
       console.log('Already paused');
     }
-
   }
+
   reset() {
     this.isReseted = true
     this.timediv.innerHTML = "00:00:00"
-
   }
 }
 
@@ -158,7 +157,6 @@ class Wires {
   // update will add/removes wires 
   update() {
     // will make as many elements as there are wires visible
-    console.log(this.allWires[3])
     for (let i = 0; i < this.newWireCount; i++) {
       this.allWires[i].removeAttribute("style")
     }
@@ -180,18 +178,18 @@ class Wires {
         this.wireStates[i].cut = true
         //if red wire
         if (i == 0 || i == 3 || i == 4 || i == 7) {
-          this.allWires[i].src = "Assets/redcutwire.png"
+          this.allWires[i].src = "Assets/Image/redcutwire.png"
           console.log("cut")
         }
         //if green wire
         else if (i == 1 || i == 5) {
-          this.allWires[i].src = "Assets/greencutwire.png"
+          this.allWires[i].src = "Assets/Image/greencutwire.png"
           console.log("cut")
 
         }
         //if blue wire
         else if (i == 2 || i == 6) {
-          this.allWires[i].src = "Assets/bluecutwire.png"
+          this.allWires[i].src = "Assets/Image/bluecutwire.png"
           console.log("cut")
 
         }
@@ -243,7 +241,6 @@ class UserI {
     let plus10 = document.getElementById("plus10")
     let minus5 = document.getElementById("minus5")
     let minus10 = document.getElementById("minus10")
-    console.log(plus5)
     let timeDiv = document.getElementById("timer")
     let timeInput = document.getElementById("time-input")
     let wireCount = document.getElementById("wire-count")
@@ -279,42 +276,44 @@ class UserI {
       for (let i = 0; i < wires.length; i++) {
         // if red wires
         if (i == 0 || i == 3 || i == 4 || i == 7) {
-          wires[i].src = "Assets/redwire.png"
+          wires[i].src = "Assets/Image/redwire.png"
         }
         //if green wire
         else if (i == 1 || i == 5) {
-          wires[i].src = "Assets/greenwire.png"
+          wires[i].src = "Assets/Image/greenwire.png"
 
         }
         //if blue wire
         else if (i == 2 || i == 6) {
-          wires[i].src = "Assets/bluewire.png"
+          wires[i].src = "Assets/Image/bluewire.png"
 
         }
       }
     })
+    function add (step){
+      let newValue = parseInt(timeInput.innerHTML)+step
+      if(newValue >180){
+        newValue = 180
+      }
+      else if(newValue <0){
+        newValue = 0
+      }
+      timeInput.innerHTML= newValue
+    }
 
     // add events to plus and minus buttons
     plus5.addEventListener("click", () => {
-      if (parseInt(timeInput.innerHTML) < 180) {
-        timeInput.innerHTML= parseInt(timeInput.innerHTML)+parseInt(5)
-      }
+        add(5)
     })
     plus10.addEventListener("click", () => {
-      if (parseInt(timeInput.innerHTML) < 175) {
-        timeInput.innerHTML= parseInt(timeInput.innerHTML)+parseInt(10)
-      }
+      add(10)
     })
 
     minus5.addEventListener("click", () => {
-      if (parseInt(timeInput.innerHTML) > 0) {
-        timeInput.innerHTML= parseInt(timeInput.innerHTML)-parseInt(5)
-      }
+      add(-5)
     })
     minus10.addEventListener("click", () => {
-      if (parseInt(timeInput.innerHTML) >5) {
-        timeInput.innerHTML= parseInt(timeInput.innerHTML)-parseInt(10)
-      }
+      add(-10)
     })
 
     plus.addEventListener("click", () => {

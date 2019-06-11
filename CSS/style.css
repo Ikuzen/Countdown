@@ -43,20 +43,22 @@ svg text
 #minus10{
   fill:crimson;
 }
-#plus5,#plus10,#minus5,#minus10{
+#plus5:hover,#plus10:hover,#minus5:hover,#minus10:hover{
+  stroke: gold;
+
 }
 h1 {
   color: red
 }
 
 #bomb {
-  background-image: url("../Assets/metallic.jpg");
+  background-image: url("../Assets/Image/metallic.jpg");
   background-size: contain;
   border-radius: 10%
 }
 
 #panel-1 {
-  background-image: url("../Assets/metallic.jpg");
+  background-image: url("../Assets/Image/metallic.jpg");
   background-size: contain;
   border-radius: 10%;
   display: grid;
@@ -137,7 +139,7 @@ head {
 }
 
 #bomb-frame {
-  background-image: url("../Assets/bombwireless.png");
+  background-image: url("../Assets/Image/bombwireless.png");
   background-size: contain;
   background-repeat: no-repeat;
   height: 0;
@@ -170,11 +172,16 @@ head {
   grid-area: panel-1;
   background-color: blueviolet
 }
-
+text {
+  pointer-events: none;
+}
+#plus5:hover,#plus10:hover,#minus5:hover,#minus10:hover{
+  box-shadow: 0 0 10px gold, 0 0 20px aqua;
+}
 #panel-2 {
   grid-area: panel-2;
   background-color: silver;
-  background-image: url("../Assets/wirecutter.png");
+  background-image: url("../Assets/Image/wirecutter.png");
   background-repeat: no-repeat;
   background-size: contain;
   border-radius: 5%;
@@ -224,7 +231,7 @@ head {
 }
 
 #panel-2>#reset{
-  background-image: url("../Assets/reset.png");
+  background-image: url("../Assets/Image/reset.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -235,9 +242,29 @@ head {
 #panel-2>#plus,#panel-2>#minus{
   font-size: 200%;
   color: azure;
-  background-image: url("../Assets/rgbWires.png");
+  background-image: url("../Assets/Image/rgbWires.png");
   background-size: contain;
   background-repeat: no-repeat
+}
+
+@media only screen and (max-width : 500px) {
+body{
+  grid-template-columns: 75% auto;
+  grid-template-rows: 5% 40% auto;
+  grid-template-areas: "head head" "bomb bomb" "panel-1 panel-2";
+  grid-gap: 1%;
+}
+#panel-1{
+  grid-template-areas: "timeinput timeinput" "start stop";
+  grid-template-rows: 64% auto auto;
+  grid-template-columns: 50% 50%;
+  max-height: 75%;
+}
+#panel-2{
+  max-height: 75%;
+}
+
+
 }
 
 @media(max-width:250px) {
