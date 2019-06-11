@@ -2,9 +2,9 @@
 /// The timer class will take the elements of the time input (from the user), and from the time div (which displays the time remaining on the bomb)
 /// it has :
 /// **loop method ** which calls itself and updates the time remaining until it reaches zero, or is paused/reseted
-/// **start method ** will call the loop method for the first time, and will initialize the conditions if game was reseted
-/// ** pause method ** will set isPaused to true, stopping the loop method and freezing the timer
-/// **reset method** will set isReseted to true, stopping the loop, and making start method initialize .
+/// **start method ** calls the loop method for the first time, and will initialize the conditions if game was reseted
+/// ** pause method ** sets isPaused to true, stopping the loop method and freezing the timer
+/// **reset method** sets isReseted to true, stopping the loop, and making start method initialize .
 //////////
 class Timer {
 
@@ -14,6 +14,7 @@ class Timer {
     this.isPaused = true;
     this.isReseted = true;
     this.tickAudio = document.getElementById("tic")
+    this.tickWTF = document.getElementById("wtf")
     this.tickDate = 0
     console.log('Created timer');
     console.log(this.timeinput)
@@ -51,6 +52,14 @@ class Timer {
     }
     this.tickDate = secondString;
   
+    if (this.remaining <= 1890) {
+      this.tickWTF.play()
+      setTimeout(() => {
+        this.tickAudio.pause()
+        this.tickAudio.currentTime = 0
+      }, 1890)  
+    }
+    // when time reaches zero : gameover
     if (this.remaining <= 0) {
       console.log('Finished');
       window.location.href = "links/explosion.html"

@@ -44,8 +44,6 @@ svg text
   fill:crimson;
 }
 #plus5,#plus10,#minus5,#minus10{
-
-z-index:-1000
 }
 h1 {
   color: red
@@ -263,5 +261,35 @@ head {
 @media(min-width:1500px) {
   #bomb-frame>#timer {
     font-size: 350%
+  }
+}
+@media(min-width:2000px) {
+  #bomb-frame>#timer {
+    font-size: 450%
+  }
+}
+@media(min-width:2500) {
+  #bomb-frame>#timer {
+    font-size: 550%
+  }
+}
+@media(min-width:3000px) {
+  #bomb-frame>#timer {
+    font-size: 650%
+  }
+}
+@media(min-width:3500px) {
+  #bomb-frame>#timer {
+    font-size: 750%
+  }
+}
+@media(min-width:4000px) {
+  #bomb-frame>#timer {
+    font-size: 850%
+  }
+}
+@media(min-width:4500px) {
+  #bomb-frame>#timer {
+    font-size: 950%
   }
 }
