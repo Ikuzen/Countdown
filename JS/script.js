@@ -51,7 +51,7 @@ class Timer {
       }, 300)
     }
     this.tickDate = secondString;
-  
+    // when timer <2 sec plays special sound
     if (this.remaining <= 1890) {
       this.tickWTF.play()
       setTimeout(() => {
