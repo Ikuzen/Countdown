@@ -12,41 +12,51 @@ body {
     "panel-1 panel-2";
   grid-gap: 1%;
 }
+
 /* the svg container */
-.svg2
-{
+.svg2 {
   width: 500px;
   height: 750px;
   fill: aliceblue;
 }
-svg text
-{
+
+svg text {
   border: 1px solid black;
   fill: black;
 }
-#input-container{
+
+#input-container {
   stroke: silver;
   fill: purple;
   stroke-opacity: 0.7;
   stroke-linecap: round;
   stroke-width: 5;
 }
-#plus5{
-  fill:greenyellow
+
+#plus5 {
+  fill: greenyellow
 }
-#plus10{
-  fill:greenyellow
+
+#plus10 {
+  fill: greenyellow
 }
-#minus5{
+
+#minus5 {
   fill: crimson;
 }
-#minus10{
-  fill:crimson;
+
+#minus10 {
+  fill: crimson;
 }
-#plus5:hover,#plus10:hover,#minus5:hover,#minus10:hover{
+
+#plus5:hover,
+#plus10:hover,
+#minus5:hover,
+#minus10:hover {
   stroke: gold;
 
 }
+
 h1 {
   color: red
 }
@@ -70,8 +80,11 @@ h1 {
 
 #timer-input {
   grid-area: timeinput;
+  max-height: 100vh;
+
 }
-#input-frame{
+
+#input-frame {
   position: relative;
   left: 18%;
   top: 19%;
@@ -83,19 +96,23 @@ h1 {
   background-color: bisque;
   border-radius: 5%;
   border: solid 2px silver;
-  stroke:black;
+  stroke: black;
 }
+
 #start {
   grid-area: start;
 }
-#start:hover{
+
+#start:hover {
   border: double aquamarine 1px;
-  transition-duration: 0.2s;}
+  transition-duration: 0.2s;
+}
 
 #stop {
   grid-area: stop;
 }
-#stop:hover{
+
+#stop:hover {
   border: double aquamarine 1px;
   transition-duration: 0.2s;
 }
@@ -120,7 +137,8 @@ h1 {
   position: relative;
   right: -12%;
 }
-img.wires:hover{
+
+img.wires:hover {
   box-shadow: 0 0 10px gold, 0 0 20px aqua;
 }
 
@@ -172,12 +190,18 @@ head {
   grid-area: panel-1;
   background-color: blueviolet
 }
+
 text {
   pointer-events: none;
 }
-#plus5:hover,#plus10:hover,#minus5:hover,#minus10:hover{
+
+#plus5:hover,
+#plus10:hover,
+#minus5:hover,
+#minus10:hover {
   box-shadow: 0 0 10px gold, 0 0 20px aqua;
 }
+
 #panel-2 {
   grid-area: panel-2;
   background-color: silver;
@@ -192,15 +216,16 @@ text {
   font-size: 400%;
 
 }
-#panel-2>label{
+
+#panel-2>label {
   grid-area: wire-label;
-  color:crimson; 
+  color: crimson;
   background-color: black;
   opacity: 0.5;
 
 }
-#panel-2>input
-{
+
+#panel-2>input {
   grid-area: wire-input;
   background: transparent;
   border: none;
@@ -209,37 +234,41 @@ text {
   text-align: center;
 }
 
-#panel-2>#plus{
+#panel-2>#plus {
   grid-area: wire-plus;
   background-color: green;
   opacity: 0.7;
-  
+
 }
-#panel-2>#plus:hover{
+
+#panel-2>#plus:hover {
   border-radius: 20%;
   transition-duration: 0.5s;
 }
 
-#panel-2>#minus{
-  grid-area:wire-minus;
+#panel-2>#minus {
+  grid-area: wire-minus;
   background-color: red;
   opacity: 0.7;
 }
-#panel-2>#minus:hover{
+
+#panel-2>#minus:hover {
   border-radius: 20%;
   transition-duration: 0.5s;
 }
 
-#panel-2>#reset{
+#panel-2>#reset {
   background-image: url("../Assets/Image/reset.png");
   background-repeat: no-repeat;
   background-size: contain;
 }
-#panel-2>#reset:hover{
+
+#panel-2>#reset:hover {
   background-color: aquamarine;
   transition-duration: 0.2s;
 }
-#panel-2>#plus,#panel-2>#minus{
+
+#panel-2>#minus,#panel-2>#plus {
   font-size: 200%;
   color: azure;
   background-image: url("../Assets/Image/rgbWires.png");
@@ -248,23 +277,23 @@ text {
 }
 
 @media only screen and (max-width : 500px) {
-body{
-  grid-template-columns: 75% auto;
-  grid-template-rows: 5% 40% auto;
-  grid-template-areas: "head head" "bomb bomb" "panel-1 panel-2";
-  grid-gap: 1%;
-}
-#panel-1{
-  grid-template-areas: "timeinput timeinput" "start stop";
-  grid-template-rows: 64% auto auto;
-  grid-template-columns: 50% 50%;
-  max-height: 75%;
-}
-#panel-2{
-  max-height: 75%;
-}
+  body {
+    grid-template-columns: 75% auto;
+    grid-template-rows: 5% 40% auto;
+    grid-template-areas: "head head""bomb bomb""panel-1 panel-2";
+    grid-gap: 1%;
+  }
 
+  #panel-1 {
+    grid-template-areas: "timeinput timeinput""start stop";
+    grid-template-rows: 64% auto auto;
+    grid-template-columns: 50% 50%;
+    max-height: 75%;
+  }
 
+  #panel-2 {
+    max-height: 75%;
+  }
 }
 
 @media(max-width:250px) {
@@ -290,31 +319,37 @@ body{
     font-size: 350%
   }
 }
+
 @media(min-width:2000px) {
   #bomb-frame>#timer {
     font-size: 450%
   }
 }
+
 @media(min-width:2500) {
   #bomb-frame>#timer {
     font-size: 550%
   }
 }
+
 @media(min-width:3000px) {
   #bomb-frame>#timer {
     font-size: 650%
   }
 }
+
 @media(min-width:3500px) {
   #bomb-frame>#timer {
     font-size: 750%
   }
 }
+
 @media(min-width:4000px) {
   #bomb-frame>#timer {
     font-size: 850%
   }
 }
+
 @media(min-width:4500px) {
   #bomb-frame>#timer {
     font-size: 950%
